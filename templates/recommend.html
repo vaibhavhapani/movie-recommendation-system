@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>NEW</title>
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap" rel="stylesheet">
+
+	<!-- Font Awesome -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+	<link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+
+</head>
+
+<body id="content">
+	<div class="results">
+	  <h2 id="name" style="margin-left: 6rem;" class="text-uppercase">{{title}}</h2>
+	</div>
+	<br>
+
+<div id="mycontent">
+    <div id="mcontent" style="background-color: #000;">
+      <div class="poster-lg">
+        <img style="border-radius: 1px;margin-left: 90px;" height="300" width="187" src={{poster}}>
+      </div>
+      <div class="poster-sm text-center">
+        <img style="border-radius: 1px;margin-bottom: 5%;" height="300" width="187" src={{poster}}>
+      </div>
+      <div id="details" style="margin-top: 1.3rem;">
+        <br/>
+        <h6 id="title" style="color:white;">TITLE: &nbsp;{{title}}</h6>
+        <h6 id="vote_average" style="color:white;">RATING: &nbsp;{{vote_average}}/10 ({{vote_count}} votes)</h6>
+        <h6 id="genres" style="color:white;">GENRE: &nbsp;{{genres}}</h6>
+        <h6 id="date" style="color:white;">RELEASE DATE: &nbsp;{{release_date}}</h6>
+        <h6 id="runtime" style="color:white;">RUNTIME: &nbsp;{{runtime}}</h6>
+      </div>
+    </div>
+</div>
+<br/>
+	
+{% for name, details in cast_details.items() if not cast_details.hidden %}
+  {% endfor %}
+  
+  {% if casts|length > 1 %}
+
+    <div class="movie-content" style="margin-top: 3rem; background-color: #000;">
+      {% for poster, title in movie_cards.items() if not movie_cards.hidden %}
+        <div style="width: 12rem; color: aliceblue;" title="{{title}}" onclick="recommendcard(this)">
+          <div class="imghvr">
+            <img class="card-img-top" height="300" width="187" alt="{{title}} - poster" src={{poster}}>
+           </div>
+          <div class="card-body">
+            <h5 class="card-title">{{title|capitalize}}</h5>
+          </div>
+        </div>
+    {% endfor %}
+    </div>
+
+    {% endif %}
+
+    
+    </div>
+  </div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script type="text/javascript" src="{{url_for('static', filename='recommend.js')}}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
