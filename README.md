@@ -1,6 +1,6 @@
 # movie-recommendation-system
 
-##How to run?
+## How to run?
 
 1. Clone this repository in your local machine.
 2. Execute "pip install -r requirements.txt" to install all the requirements.
